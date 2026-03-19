@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Bridge AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-shell">
+        <div class="chat-wrapper">
+            <div class="chat-header">
+                <div>
+                    <h1>K-Bridge AI</h1>
+                    <p>AI Cultural Communication Assistant for India ↔ Korea</p>
+                </div>
+                <form action="/clear" method="POST" class="clear-form">
+                    <button type="submit" class="clear-btn">Clear Chat</button>
+                </form>
+            </div>
+
+            <div class="chat-box">
+                {% if chat_history %}
+                    {% for chat in chat_history %}
+                        <div class="message-row user-row">
+                            <div class="message-bubble user-bubble">
+                                <div class="message-label">You</div>
+                                <p>{{ chat.user_message }}</p>
+                                <div class="meta-text">{{ chat.mode|title }} Mode • {{ chat.tone|title }}</div>
+                            </div>
+                        </div>
+
+                        <div class="message-row bot-row">
+                            <div class="message-bubble bot-bubble">
+                                <div class="message-label">K-Bridge AI</div>
+
+                                <div class="ai-section">
+                                    <h3>Improved Message</h3>
+                                    <p id="improved-{{ loop.index }}">{{ chat.improved_message }}</p>
+                                    <button type="button" class="copy-btn" onclick="copyText('improved-{{ loop.index }}')">Copy</button>
+                                </div>
+
+                                <div class="ai-section">
+                                    <h3>Korean-Friendly Version</h3>
+                                    <p id="friendly-{{ loop.index }}">{{ chat.korean_friendly }}</p>
+                                    <button type="button" class="copy-btn" onclick="copyText('friendly-{{ loop.index }}')">Copy</button>
+                                </div>
+
+                                <div class="ai-section">
+                                    <h3>Korean Translation</h3>
+                                    <p id="korean-{{ loop.index }}">{{ chat.korean_translation }}</p>
+                                    <button type="button" class="copy-btn" onclick="copyText('korean-{{ loop.index }}')">Copy</button>
+                                </div>
+
+                                <div class="ai-section">
+                                    <h3>Cultural Note</h3>
+                                    <p>{{ chat.cultural_note }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <h2>Start your conversation</h2>
+                        <p>Type a message and K-Bridge AI will rewrite it for Korean-friendly communication.</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="input-panel">
+                <form method="POST" class="chat-form">
+                    <textarea
+                        name="message"
+                        id="message"
+                        placeholder="Type your message here..."
+                        required
+                    ></textarea>
+
+                    <div class="controls-row">
+                        <div class="field-group">
+                            <label for="mode">Mode</label>
+                            <select name="mode" id="mode" required>
+                                <option value="friend">Friend Mode</option>
+                                <option value="workplace">Workplace Mode</option>
+                                <option value="casual" selected>Casual Mode</option>
+                            </select>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="tone">Tone</label>
+                            <select name="tone" id="tone" required>
+                                <option value="casual" selected>Casual</option>
+                                <option value="polite">Polite</option>
+                                <option value="formal">Formal</option>
+                            </select>
+                        </div>
+
+                        <button type="submit">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyText(id) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Copied!");
+            });
+        }
+
+        const chatBox = document.querySelector(".chat-box");
+        if (chatBox) {
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>

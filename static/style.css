@@ -1,0 +1,275 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #e5ddd5;
+    color: #1f1f1f;
+    min-height: 100vh;
+}
+
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+.chat-wrapper {
+    width: 100%;
+    max-width: 980px;
+    height: 92vh;
+    background: #efeae2;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background: #1f3c88;
+    color: white;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.chat-header h1 {
+    font-size: 30px;
+    margin-bottom: 6px;
+}
+
+.chat-header p {
+    font-size: 15px;
+    opacity: 0.92;
+}
+
+.clear-form {
+    margin: 0;
+}
+
+.clear-btn {
+    background: white;
+    color: #1f3c88;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    height: auto;
+}
+
+.clear-btn:hover {
+    background: #eef2ff;
+}
+
+.chat-box {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+    background: #efeae2;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.message-row {
+    display: flex;
+    width: 100%;
+}
+
+.user-row {
+    justify-content: flex-end;
+}
+
+.bot-row {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    max-width: 76%;
+    padding: 16px 18px;
+    border-radius: 18px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.user-bubble {
+    background: #d9fdd3;
+    border-top-right-radius: 6px;
+}
+
+.bot-bubble {
+    background: #ffffff;
+    border-top-left-radius: 6px;
+}
+
+.message-label {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.message-bubble p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.meta-text {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #666;
+}
+
+.ai-section {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid #ececec;
+}
+
+.ai-section:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+.ai-section h3 {
+    font-size: 16px;
+    color: #1f3c88;
+    margin-bottom: 6px;
+}
+
+.empty-state {
+    margin: auto;
+    text-align: center;
+    color: #5f6368;
+    max-width: 500px;
+}
+
+.empty-state h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #1f3c88;
+}
+
+.empty-state p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.input-panel {
+    background: #f0f2f5;
+    padding: 18px 20px;
+    border-top: 1px solid #ddd;
+}
+
+.chat-form textarea {
+    width: 100%;
+    min-height: 90px;
+    max-height: 140px;
+    resize: vertical;
+    border: 1px solid #cfcfcf;
+    border-radius: 14px;
+    padding: 14px;
+    font-size: 15px;
+    margin-bottom: 14px;
+    outline: none;
+}
+
+.controls-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 160px;
+    gap: 14px;
+    align-items: end;
+}
+
+.field-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.field-group select {
+    width: 100%;
+    border: 1px solid #cfcfcf;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 15px;
+    background: white;
+}
+
+button {
+    border: none;
+    background: #1f3c88;
+    color: white;
+    padding: 13px 18px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    height: 48px;
+}
+
+button:hover {
+    background: #17306d;
+}
+
+@media (max-width: 768px) {
+    .app-shell {
+        padding: 0;
+    }
+
+    .chat-wrapper {
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .chat-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .chat-box {
+        padding: 16px;
+    }
+
+    .message-bubble {
+        max-width: 92%;
+    }
+
+    .controls-row {
+        grid-template-columns: 1fr;
+    }
+
+    button,
+    .clear-btn {
+        width: 100%;
+    }
+}
+
+.copy-btn {
+    margin-top: 10px;
+    background: #eef2ff;
+    color: #1f3c88;
+    border: 1px solid #cfd8ff;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    height: auto;
+    width: auto;
+}
+
+.copy-btn:hover {
+    background: #dfe7ff;
+}
+
